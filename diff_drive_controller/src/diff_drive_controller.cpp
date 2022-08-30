@@ -407,21 +407,34 @@ namespace diff_drive_controller{
     {
       double left_pos  = 0.0;
       double right_pos = 0.0;
+
+      double left_vel = 0.0;
+      double right_vel = 0.0;
       for (size_t i = 0; i < wheel_joints_size_; ++i)
       {
         const double lp = left_wheel_joints_[i].getPosition();
         const double rp = right_wheel_joints_[i].getPosition();
-        if (std::isnan(lp) || std::isnan(rp))
+
+        const double lv = left_wheel_joints_[i].getVelocity();
+        const double rv = right_wheel_joints_[i].getVelocity();
+
+        if (std::isnan(lp) || std::isnan(rp) || std::isnan(lv) || std::isnan(rv))
           return;
 
         left_pos  += lp;
         right_pos += rp;
+
+        left_vel += lv;
+        right_vel += rv;
       }
       left_pos  /= wheel_joints_size_;
       right_pos /= wheel_joints_size_;
 
+      left_vel /= wheel_joints_size_;
+      right_vel /= wheel_joints_size_;
+
       // Estimate linear and angular velocity using joint information
-      odometry_.update(left_pos, right_pos, time);
+      odometry_.update(left_pos, right_pos, left_vel, right_vel, time);
     }
 
     // Publish odometry message
