@@ -73,7 +73,7 @@ namespace diff_drive_controller
     timestamp_ = time;
   }
 
-  bool Odometry::update(double left_pos, double right_pos, const ros::Time &time)
+  bool Odometry::update(double left_pos, double right_pos, double left_vel, double right_vel, const ros::Time &time)
   {
     /// Get current wheel joint positions:
     const double left_wheel_cur_pos  = left_pos  * left_wheel_radius_;
@@ -105,8 +105,16 @@ namespace diff_drive_controller
     linear_acc_(linear/dt);
     angular_acc_(angular/dt);
 
-    linear_ = bacc::rolling_mean(linear_acc_);
-    angular_ = bacc::rolling_mean(angular_acc_);
+    // Old version, using rolling mean
+    // linear_ = bacc::rolling_mean(linear_acc_);
+    // angular_ = bacc::rolling_mean(angular_acc_);
+
+    // Parameter is in rpm, pass it to m/s
+    double left_motor_speed_ms = left_vel * left_wheel_radius_;
+    double right_motor_speed_ms = right_vel * right_wheel_radius_;
+
+    linear_ = (right_motor_speed_ms + left_motor_speed_ms) * 0.5;
+    angular_ = (right_motor_speed_ms - left_motor_speed_ms) / wheel_separation_;
 
     return true;
   }
