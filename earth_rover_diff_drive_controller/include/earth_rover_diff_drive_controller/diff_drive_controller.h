@@ -41,9 +41,9 @@
 
 #include <control_msgs/JointTrajectoryControllerState.h>
 #include <controller_interface/controller.h>
-#include <diff_drive_controller/DiffDriveControllerConfig.h>
-#include <diff_drive_controller/odometry.h>
-#include <diff_drive_controller/speed_limiter.h>
+#include <earth_rover_diff_drive_controller/DiffDriveControllerConfig.h>
+#include <earth_rover_diff_drive_controller/odometry.h>
+#include <earth_rover_diff_drive_controller/speed_limiter.h>
 #include <dynamic_reconfigure/server.h>
 #include <geometry_msgs/TwistStamped.h>
 #include <hardware_interface/joint_command_interface.h>
@@ -54,7 +54,7 @@
 #include <realtime_tools/realtime_publisher.h>
 #include <tf/tfMessage.h>
 
-namespace diff_drive_controller{
+namespace earth_rover_diff_drive_controller{
 
   /**
    * This class makes some assumptions on the model of the robot:
@@ -310,5 +310,5 @@ namespace diff_drive_controller{
                           double right_wheel_radius);
   };
 
-  PLUGINLIB_EXPORT_CLASS(diff_drive_controller::DiffDriveController, controller_interface::ControllerBase);
+  PLUGINLIB_EXPORT_CLASS(earth_rover_diff_drive_controller::DiffDriveController, controller_interface::ControllerBase);
 } // namespace diff_drive_controller

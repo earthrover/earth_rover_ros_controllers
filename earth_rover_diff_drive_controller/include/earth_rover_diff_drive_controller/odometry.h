@@ -48,7 +48,7 @@
 #include <boost/accumulators/statistics/rolling_mean.hpp>
 #include <boost/function.hpp>
 
-namespace diff_drive_controller
+namespace earth_rover_diff_drive_controller
 {
   namespace bacc = boost::accumulators;
 

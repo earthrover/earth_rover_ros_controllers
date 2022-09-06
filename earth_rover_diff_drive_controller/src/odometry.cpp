@@ -39,11 +39,11 @@
  * Author: Paul Mathieu
  */
 
-#include <diff_drive_controller/odometry.h>
+#include <earth_rover_diff_drive_controller/odometry.h>
 
 #include <boost/bind.hpp>
 
-namespace diff_drive_controller
+namespace earth_rover_diff_drive_controller
 {
   namespace bacc = boost::accumulators;
 

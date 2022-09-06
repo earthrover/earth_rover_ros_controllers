@@ -1,6 +1,6 @@
-<library path="lib/libdiff_drive_controller">
+<library path="lib/libearth_rover_diff_drive_controller">
 
-  <class name="diff_drive_controller/DiffDriveControllerEarthRover" type="diff_drive_controller::DiffDriveController" base_class_type="controller_interface::ControllerBase">
+  <class name="earth_rover_diff_drive_controller/DiffDriveController" type="earth_rover_diff_drive_controller::DiffDriveController" base_class_type="controller_interface::ControllerBase">
     <description>
       The DiffDriveController tracks velocity commands. It expects 2 VelocityJointInterface type of hardware interfaces.
     </description>

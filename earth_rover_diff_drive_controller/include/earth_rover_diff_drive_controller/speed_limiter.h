@@ -39,7 +39,7 @@
 #pragma once
 
 
-namespace diff_drive_controller
+namespace earth_rover_diff_drive_controller
 {
 
   class SpeedLimiter
