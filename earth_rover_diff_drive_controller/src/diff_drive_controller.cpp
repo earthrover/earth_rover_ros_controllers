@@ -37,7 +37,7 @@
  */
 
 #include <cmath>
-#include <diff_drive_controller/diff_drive_controller.h>
+#include <earth_rover_diff_drive_controller/diff_drive_controller.h>
 #include <tf/transform_datatypes.h>
 #include <urdf/urdfdom_compatibility.h>
 #include <urdf_parser/urdf_parser.h>
@@ -141,7 +141,7 @@ static bool getWheelRadius(const urdf::LinkConstSharedPtr& wheel_link, double& w
   return false;
 }
 
-namespace diff_drive_controller{
+namespace earth_rover_diff_drive_controller{
 
   DiffDriveController::DiffDriveController()
     : open_loop_(false)
@@ -382,6 +382,8 @@ namespace diff_drive_controller{
     dyn_reconf_server_mutex_.unlock();
 
     dyn_reconf_server_->setCallback(boost::bind(&DiffDriveController::reconfCallback, this, _1, _2));
+
+    ROS_INFO_STREAM("[ROVER][EARTH ROVER DIFF DRIVE CONTROLLER] Done init");
 
     return true;
   }
